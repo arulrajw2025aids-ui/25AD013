@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Details - TripSplit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="main-content">
+        <div class="page-header">
+            <button class="mobile-menu-btn">☰</button>
+            <h1 class="page-title" id="detail-trip-name">Loading...</h1>
+            <a href="trips.html" class="btn btn-secondary">Back to Trips</a>
+        </div>
+
+        <div class="card-grid">
+            <div class="card" style="grid-column: span 2;">
+                <h2 class="card-title">Trip Information</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+                    <div><strong>Destination:</strong> <span id="detail-dest"></span></div>
+                    <div><strong>Type:</strong> <span id="detail-type"></span></div>
+                    <div><strong>Budget:</strong> <span id="detail-budget"></span></div>
+                    <div><strong>Participants:</strong> <span id="detail-part-count"></span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="page-title" style="font-size: 1.25rem;">Participants</h2>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                        </tr>
+                    </thead>
+                    <tbody id="detail-participants">
+                        <tr><td colspan="4">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="page-title" style="font-size: 1.25rem;">Expenses</h2>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Participant</th>
+                            <th>Total Budget (Paid)</th>
+                            <th>Share (Owed)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="detail-expenses">
+                        <tr><td colspan="3">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="page-title" style="font-size: 1.25rem;">Settlement Summary</h2>
+                <a href="settlements.html" class="btn btn-primary btn-sm">Go to Settlements</a>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Participant</th>
+                            <th>Total Paid</th>
+                            <th>Total Share</th>
+                            <th>Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody id="detail-settlements">
+                        <tr><td colspan="4">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/trip-details.js"></script>
+</body>
+</html>

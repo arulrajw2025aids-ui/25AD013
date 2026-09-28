@@ -13,7 +13,6 @@ import java.util.List;
 
 @Service
 public class ExpenseServices {
-
     @Autowired
     private ExpenseRepository expenserepository;
 
@@ -45,7 +44,11 @@ public class ExpenseServices {
         }
         Trip trip = triprepository.findById(data.getTripId()).get();
         float totalBudget = trip.getBudget();
-        int numberOfParticipants = trip.getParticipants();
+        
+        long numberOfParticipants = participantrepository.findAll().stream()
+                .filter(p -> p.getTripId() != null && p.getTripId().equals(data.getTripId()))
+                .count();
+                
         if (numberOfParticipants <= 0) {
             throw new RuntimeException(
                     "Number of participants must be greater than zero"

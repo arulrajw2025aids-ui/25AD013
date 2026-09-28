@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settlements - TripSplit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .transaction-card {
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+        }
+        .transaction-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .arrow {
+            color: var(--text-muted);
+            font-size: 1.25rem;
+        }
+        .amount {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div class="page-header">
+            <button class="mobile-menu-btn">☰</button>
+            <h1 class="page-title">Settlements</h1>
+        </div>
+
+        <div class="card mb-4">
+            <div class="flex justify-between items-end gap-4" style="flex-wrap: wrap;">
+                <div class="form-group mb-0" style="flex: 1; min-width: 250px; max-width: 300px;">
+                    <label class="form-label">Select Trip to View Settlements</label>
+                    <select id="trip-select" class="form-control" onchange="loadSettlementData()">
+                        <option value="">Select a trip</option>
+                        <!-- Populated via JS -->
+                    </select>
+                </div>
+                <button class="btn btn-primary" id="calc-btn" onclick="calculateSettlements()" disabled>
+                    Calculate Settlement
+                </button>
+            </div>
+        </div>
+
+        <!-- Settlement Summary Table -->
+        <div id="summary-section" class="hidden mb-4">
+            <h2 class="page-title mb-4" style="font-size: 1.25rem;">Participant Balances</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Participant</th>
+                            <th>Total Paid</th>
+                            <th>Total Share</th>
+                            <th>Balance</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="balances-table-body">
+                        <!-- Populated via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Transactions View -->
+        <div id="transactions-section" class="hidden">
+            <h2 class="page-title mb-4" style="font-size: 1.25rem;">Settlement Transactions</h2>
+            <div id="transactions-container">
+                <!-- Populated via JS -->
+            </div>
+        </div>
+        
+        <div id="empty-state" class="empty-state">
+            <div class="empty-state-icon">💸</div>
+            <div class="empty-state-title">No trip selected</div>
+            <div class="empty-state-desc">Select a trip above to view or calculate settlements.</div>
+        </div>
+
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/settlements.js"></script>
+</body>
+</html>

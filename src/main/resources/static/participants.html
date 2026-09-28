@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participants - TripSplit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="main-content">
+        <div class="page-header">
+            <button class="mobile-menu-btn">☰</button>
+            <h1 class="page-title">Participants</h1>
+            <button class="btn btn-primary" onclick="openCreateModal()">+ Add Participant</button>
+        </div>
+
+        <div class="card" style="margin-bottom: 1.5rem;">
+            <div class="form-group mb-0" style="max-width: 300px;">
+                <label class="form-label">Filter by Trip</label>
+                <select id="trip-filter" class="form-control" onchange="filterParticipants()">
+                    <option value="">All Trips</option>
+                    <!-- Populated via JS -->
+                </select>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Trip</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="participants-table-body">
+                    <tr><td colspan="6">Loading...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="participant-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title" id="participant-modal-title">Add Participant</div>
+                <button class="modal-close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="participant-form">
+                    <input type="hidden" id="part-id">
+                    <div class="form-group">
+                        <label class="form-label">Trip *</label>
+                        <select id="part-trip-id" class="form-control" required>
+                            <!-- Populated via JS -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Name *</label>
+                        <input type="text" id="part-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Age *</label>
+                        <input type="number" id="part-age" class="form-control" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email *</label>
+                        <input type="email" id="part-email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone *</label>
+                        <input type="tel" id="part-phone" class="form-control" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" id="save-part-btn" onclick="saveParticipant()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/participants.js"></script>
+</body>
+</html>

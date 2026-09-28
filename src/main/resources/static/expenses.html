@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses - TripSplit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="main-content">
+        <div class="page-header">
+            <button class="mobile-menu-btn">☰</button>
+            <h1 class="page-title">Expenses</h1>
+            <button class="btn btn-primary" onclick="openCreateModal()">+ Add Expense</button>
+        </div>
+
+        <div class="card mb-4">
+            <div class="form-group mb-0" style="max-width: 300px;">
+                <label class="form-label">Filter by Trip</label>
+                <select id="trip-filter" class="form-control" onchange="filterExpenses()">
+                    <option value="">All Trips</option>
+                    <!-- Populated via JS -->
+                </select>
+            </div>
+        </div>
+
+        <div class="alert mb-4" style="background: #e0f2fe; color: #0369a1; padding: 1rem; border-radius: 0.5rem; border: 1px solid #bae6fd;">
+            <strong>Note:</strong> The backend <code>Expense</code> model only supports linking a single Participant to a Trip with a <code>share</code> and <code>totalBudget</code>. Fields like "Expense Title", "Date", and "Paid By" are not present in the database, so they have been omitted to match the backend structure.
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Trip</th>
+                        <th>Participant</th>
+                        <th>Total Budget</th>
+                        <th>Share</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="expenses-table-body">
+                    <tr><td colspan="5">Loading...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="expense-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title" id="expense-modal-title">Add Expense</div>
+                <button class="modal-close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="expense-form">
+                    <input type="hidden" id="exp-id">
+                    
+                    <div class="form-group">
+                        <label class="form-label">Trip *</label>
+                        <select id="exp-trip-id" class="form-control" required onchange="populateParticipantsForTrip()">
+                            <option value="">Select a trip</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Participant *</label>
+                        <select id="exp-part-id" class="form-control" required>
+                            <option value="">Select a trip first</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Total Expense Amount (Total Budget) * <span class="text-muted" style="font-size: 0.75rem; font-weight: normal;">(Auto-fetched from Trip)</span></label>
+                        <input type="number" id="exp-total" class="form-control" min="0" step="0.01" required readonly style="background-color: var(--bg-light);">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Participant Share * <span class="text-muted" style="font-size: 0.75rem; font-weight: normal;">(Auto-calculated)</span></label>
+                        <input type="number" id="exp-share" class="form-control" min="0" step="0.01" required readonly style="background-color: var(--bg-light);">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" id="save-exp-btn" onclick="saveExpense()">Save Expense</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/expenses.js"></script>
+</body>
+</html>
