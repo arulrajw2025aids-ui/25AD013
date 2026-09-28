@@ -48,7 +48,14 @@ async function apiRequest(url, options = {}) {
         }
         
         const text = await response.text();
-        return text ? JSON.parse(text) : null;
+        if (!text) return null;
+        
+        try {
+            return JSON.parse(text);
+        } catch (e) {
+            // Backend sometimes returns raw strings (like "Expense deleted successfully") instead of JSON
+            return text;
+        }
         
     } catch (error) {
         console.error(`API Error (${url}):`, error);
@@ -77,9 +84,10 @@ async function updateTrip(data) {
     });
 }
 
-// NOTE: Backend does not have a trip delete API. We will throw an error.
 async function deleteTrip(id) {
-    throw new Error("Backend does not support deleting trips. (No /api/trip/delete endpoint)");
+    return apiRequest(`/trip/delete/${id}`, {
+        method: 'DELETE'
+    });
 }
 
 // NOTE: Backend does not have a getTrip by ID API. We will fetch all and filter.

@@ -25,4 +25,8 @@ public class TripServices {
     public Trip updatetrip(Trip data) {
         return triprepository.save(data);
     }
+
+    public void deletetrip(long id) {
+        triprepository.deleteById(id);
+    }
 }

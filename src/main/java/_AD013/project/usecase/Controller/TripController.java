@@ -30,4 +30,10 @@ public class TripController {
     ResponseEntity<Trip> updatetrip(@RequestBody Trip data) {
         return new ResponseEntity<>(tripServices.updatetrip(data), HttpStatus.ACCEPTED);
     }
+
+    @DeleteMapping("/delete/{id}")
+    ResponseEntity<String> deletetrip(@PathVariable long id) {
+        tripServices.deletetrip(id);
+        return new ResponseEntity<>("Trip deleted successfully", HttpStatus.OK);
+    }
 }
