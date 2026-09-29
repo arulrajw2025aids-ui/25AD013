@@ -43,10 +43,6 @@ function renderTrips() {
                     <div class="card-title" style="font-size:0.7rem;">Budget</div>
                     <div style="font-weight:600;">₹${trip.budget}</div>
                 </div>
-                <div>
-                    <div class="card-title" style="font-size:0.7rem;">Participants</div>
-                    <div style="font-weight:600;">${trip.participants || 0}</div>
-                </div>
             </div>
 
             <div class="flex gap-2 mt-4" style="border-top: 1px solid var(--border-color); padding-top: 1rem;">

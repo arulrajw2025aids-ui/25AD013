@@ -9,7 +9,6 @@ import lombok.Data;
 @Entity
 @Data
 public class Participant {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

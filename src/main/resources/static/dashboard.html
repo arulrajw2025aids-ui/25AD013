@@ -10,21 +10,104 @@
 <body>
     <div class="main-content">
         <div class="page-header">
-            <button class="mobile-menu-btn">☰</button>
-            <h1 class="page-title">Dashboard</h1>
+            <div>
+                <button class="mobile-menu-btn">☰</button>
+                <h1 class="page-title">Dashboard</h1>
+                <div class="page-subtitle">Overview of your trips, expenses and settlements</div>
+            </div>
         </div>
 
         <div class="card-grid">
             <div class="card">
-                <div class="card-title">Total Trips</div>
-                <div class="card-value" id="stat-total-trips">-</div>
+                <div class="card-header-flex">
+                    <div>
+                        <div class="card-title">Total Trips</div>
+                        <div class="card-value" id="stat-total-trips">-</div>
+                    </div>
+                    <div class="card-icon">✈️</div>
+                </div>
+                <div class="text-sm text-muted mt-2">Active trips</div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header-flex">
+                    <div>
+                        <div class="card-title">Total Participants</div>
+                        <div class="card-value" id="stat-total-participants">-</div>
+                    </div>
+                    <div class="card-icon">👥</div>
+                </div>
+                <div class="text-sm text-muted mt-2">People involved</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header-flex">
+                    <div>
+                        <div class="card-title">Total Expenses</div>
+                        <div class="card-value" id="stat-total-expenses">-</div>
+                    </div>
+                    <div class="card-icon">💸</div>
+                </div>
+                <div class="text-sm text-muted mt-2">Across all trips</div>
+            </div>
+
+
+        </div>
+
+        <div class="dashboard-layout">
+            <!-- Left Column: Main Content -->
+            <div class="dashboard-main">
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-title">Recent Trips</div>
+                        <a href="trips.html" class="btn btn-sm btn-secondary">View All</a>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Trip Name</th>
+                                    <th>Date</th>
+                                    <th>Participants</th>
+                                    <th>Total Expense</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-trips-table">
+                                <tr><td colspan="6" class="text-center">Loading...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!-- Right Column: Sidebar content for dashboard -->
+            <div class="dashboard-sidebar">
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-title">Quick Actions</div>
+                    </div>
+                    <div class="quick-actions-grid">
+                        <a href="trips.html" class="btn btn-primary quick-action-btn">+ New Trip</a>
+                        <a href="participants.html" class="btn btn-secondary quick-action-btn">+ Participant</a>
+                        <a href="expenses.html" class="btn btn-secondary quick-action-btn">+ Expense</a>
+                        <a href="settlements.html" class="btn btn-secondary quick-action-btn">Settlements</a>
+                    </div>
+                </div>
+
+
+
+
             </div>
         </div>
 
     </div>
 
-    <script src="js/api.js"></script>
-    <script src="js/common.js"></script>
-    <script src="js/dashboard.js"></script>
+    <script src="js/api.js?v=2"></script>
+    <script src="js/common.js?v=2"></script>
+    <script src="js/dashboard.js?v=3"></script>
 </body>
 </html>

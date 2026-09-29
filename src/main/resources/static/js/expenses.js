@@ -81,7 +81,7 @@ function renderExpenses() {
     }
 
     if (filtered.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted" style="text-align:center; padding: 2rem;">No expenses recorded yet.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="6" class="text-center text-muted" style="text-align:center; padding: 2rem;">No expenses recorded yet.</td></tr>`;
         return;
     }
 
@@ -98,6 +98,7 @@ function renderExpenses() {
                 <td><strong>${partName}</strong></td>
                 <td>₹${e.totalBudget}</td>
                 <td>₹${e.share}</td>
+                <td>₹${e.participantPays || 0}</td>
                 <td>
                     <button class="btn btn-secondary btn-sm" onclick="openEditModal(${e.id})">Edit</button>
                     <button class="btn btn-danger btn-sm" onclick="handleDelete(${e.id})">Delete</button>
@@ -135,6 +136,7 @@ function openEditModal(id) {
 
     document.getElementById('exp-total').value = e.totalBudget;
     document.getElementById('exp-share').value = e.share;
+    document.getElementById('exp-pays').value = e.participantPays || '';
 
     document.getElementById('expense-modal-title').textContent = 'Edit Expense';
     openModal('expense-modal');
@@ -147,6 +149,7 @@ async function saveExpense() {
     const partIdStr = document.getElementById('exp-part-id').value;
     const totalBudgetStr = document.getElementById('exp-total').value;
     const shareStr = document.getElementById('exp-share').value;
+    const paysStr = document.getElementById('exp-pays').value;
     
     // Explicit Validation
     if (!tripIdStr) {
@@ -170,12 +173,19 @@ async function saveExpense() {
         return;
     }
 
+    const pays = parseFloat(paysStr);
+    if (isNaN(pays) || pays < 0) {
+        showToast('❌ Failed to save expense: Participant pays must be a valid number.', 'error');
+        return;
+    }
+
     const id = document.getElementById('exp-id').value;
     const data = {
         tripId: parseInt(tripIdStr),
         participantId: parseInt(partIdStr),
         totalBudget: totalBudget,
-        share: share
+        share: share,
+        participantPays: pays
     };
 
     const btn = document.getElementById('save-exp-btn');

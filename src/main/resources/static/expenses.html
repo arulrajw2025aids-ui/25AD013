@@ -25,10 +25,6 @@
             </div>
         </div>
 
-        <div class="alert mb-4" style="background: #e0f2fe; color: #0369a1; padding: 1rem; border-radius: 0.5rem; border: 1px solid #bae6fd;">
-            <strong>Note:</strong> The backend <code>Expense</code> model only supports linking a single Participant to a Trip with a <code>share</code> and <code>totalBudget</code>. Fields like "Expense Title", "Date", and "Paid By" are not present in the database, so they have been omitted to match the backend structure.
-        </div>
-
         <div class="table-container">
             <table>
                 <thead>
@@ -37,11 +33,12 @@
                         <th>Participant</th>
                         <th>Total Budget</th>
                         <th>Share</th>
+                        <th>Pays</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody id="expenses-table-body">
-                    <tr><td colspan="5">Loading...</td></tr>
+                    <tr><td colspan="6">Loading...</td></tr>
                 </tbody>
             </table>
         </div>
@@ -81,6 +78,11 @@
                         <label class="form-label">Participant Share * <span class="text-muted" style="font-size: 0.75rem; font-weight: normal;">(Auto-calculated)</span></label>
                         <input type="number" id="exp-share" class="form-control" min="0" step="0.01" required readonly style="background-color: var(--bg-light);">
                     </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Participant Pays *</label>
+                        <input type="number" id="exp-pays" class="form-control" min="0" step="0.01" required placeholder="Amount participant paid">
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -90,8 +92,8 @@
         </div>
     </div>
 
-    <script src="js/api.js"></script>
-    <script src="js/common.js"></script>
-    <script src="js/expenses.js"></script>
+    <script src="js/api.js?v=2"></script>
+    <script src="js/common.js?v=2"></script>
+    <script src="js/expenses.js?v=2"></script>
 </body>
 </html>

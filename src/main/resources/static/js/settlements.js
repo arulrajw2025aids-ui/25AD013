@@ -86,7 +86,7 @@ function renderBalances() {
     
     currentTripExpenses.forEach(exp => {
         if (balances[exp.participantId]) {
-            balances[exp.participantId].paid += exp.totalBudget || 0;
+            balances[exp.participantId].paid += (exp.participantPays || 0);
             // We use the baseShare for everyone, so we ignore exp.share to avoid double counting if multiple expenses exist
         }
     });
@@ -216,7 +216,7 @@ async function calculateSettlements() {
         
         currentTripExpenses.forEach(exp => {
             if (balances[exp.participantId]) {
-                const paid = exp.totalBudget || 0;
+                const paid = exp.participantPays || 0;
                 balances[exp.participantId].balance -= paid;
             }
         });
