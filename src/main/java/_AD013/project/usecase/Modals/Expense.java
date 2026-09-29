@@ -18,4 +18,5 @@ public class Expense {
     private Long tripId;
     private float share;
     private float totalBudget;
+    private float participantPays;
 }
